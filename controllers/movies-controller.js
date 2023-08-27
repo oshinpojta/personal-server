@@ -5,7 +5,7 @@ exports.getMovies = async (req, res, next) => {
     try {
         let limit = req.query.limit || 20;
         let offset = req.query.offset || 0;
-        let movies = await Movies.find().limit(limit).skip(offset);
+        let movies = await Movies.find({ poster : { $ne : null } }).limit(limit).skip(offset);
         res.json({ success : true, data : movies});
     } catch (error) {
         console.log(`ERROR : ${path.basename(__dirname)}/${path.basename(__filename)}/${__function}\n`,error);
