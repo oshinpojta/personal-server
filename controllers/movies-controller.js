@@ -18,7 +18,7 @@ exports.getMovies = async (req, res, next) => {
     try {
         let limit = req.query.limit || 50;
         let offset = req.query.offset || 0;
-        let genres = req.query.genres;
+        let genres = req.body.genres;
         let year = req.query.year;
         let searchField = req.query.searchField;
         // create query
