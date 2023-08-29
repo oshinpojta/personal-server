@@ -20,7 +20,7 @@ exports.getMovies = async (req, res, next) => {
         let offset = req.query.offset || 0;
         let genres = req.body.genres;
         let year = req.query.year;
-        let searchField = req.query.searchField;
+        let search_text = req.body.search_text;
         // create query
         const query = {
             poster : { $ne : null },
@@ -33,16 +33,17 @@ exports.getMovies = async (req, res, next) => {
         if(year){
             query.year = year;
         }
-        if(searchField){
+        if(search_text){
             query.$or = [
-                { title: { $regex: searchField }}, 
-                { plot: { $regex: searchField }}, 
-                { genres: { $regex: searchField }}, 
-                { languages: { $regex: searchField }}, 
-                { directors: { $regex: searchField }}, 
-                { writers: { $regex: searchField }}, 
-                { countries: { $regex: searchField }},
-                { production: { $regex: searchField }}
+                { title: { $regex: search_text }}, 
+                { plot: { $regex: search_text }}, 
+                { genres: { $regex: search_text }}, 
+                { languages: { $regex: search_text }}, 
+                { directors: { $regex: search_text }}, 
+                { writers: { $regex: search_text }}, 
+                { countries: { $regex: search_text }},
+                { production: { $regex: search_text }},
+                { cast: { $regex: search_text }}
             ] 
         }
         
