@@ -93,9 +93,10 @@ exports.updateMovie = async (req, res, next) => {
 
 exports.deleteMovie = async (req, res, next) => {
     try {
-        let movie_id = req.body._id;
-        let movie = await Movies.deleteOne({ _id :movie_id });
-        res.json({ success : true, data : movie});
+        let movie_id = req.params._id;
+        let result = await Movies.deleteOne({ _id :movie_id });
+        // console.log(movie_id, result)
+        res.json({ success : true, data : result});
     } catch (error) {
         console.log(`ERROR : ${path.basename(__dirname)}/${path.basename(__filename)}/${__function}\n`,error);
         res.json({ success: false, msg : "Internal Server Error!"});
