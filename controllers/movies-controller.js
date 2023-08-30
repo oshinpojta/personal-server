@@ -16,7 +16,7 @@ const Genres = [
 
 exports.getMovies = async (req, res, next) => {
     try {
-        let limit = req.query.limit || 50;
+        let limit = req.query.limit || 60;
         let offset = req.query.offset || 0;
         let genres = req.body.genres;
         let year = req.query.year;
@@ -28,7 +28,6 @@ exports.getMovies = async (req, res, next) => {
 
         if(genres){  
             query.genres = genres;
-            console.log(genres);
         }
         if(year){
             query.year = year;
